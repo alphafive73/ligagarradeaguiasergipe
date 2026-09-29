@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AcademiaPro+ — Sistema de Gestão</title>
+<link rel="icon" type="image/x-icon" href="Imagens/icone.ico">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="login-screen" class="login-screen">
+  <div class="login-card">
+    <div class="login-brand">
+      <h1>AcademiaPro+</h1>
+      <p>Faça login para continuar</p>
+    </div>
+    <form class="login-form" onsubmit="return authenticate(event)">
+      <label for="login-email">Email</label>
+      <input type="email" id="login-email" placeholder=" " autocomplete="username" required>
+      <label for="login-password">Senha</label>
+      <input type="password" id="login-password" placeholder="" autocomplete="current-password" required>
+      <button class="btn btn-primary" type="submit">Entrar</button><hr>
+      <p class="login-help" id="login-help-text">Duvidas? <strong>Consulte a equipe de Desenvolvimento</strong></p>
+    </form>
+  </div>
+</div>
+
+<!-- SIDEBAR -->
+<nav id="sidebar">
+  <div class="sidebar-logo">
+    <img src="Imagens/Aguia.png" alt="Aguia" class="sidebar-logo-img">
+    <div>
+      <h1>LIGA GARRA DE AGUIA</h1>
+      <p>SISTEMA DE GESTÃO</p>
+    </div>
+  </div>
+  <div class="sidebar-nav">
+    <div class="nav-item active" data-route="dashboard">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      Dashboard
+    </div>
+    <div class="nav-item" data-route="filiais">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+      Associações
+    </div>
+    <div class="nav-item" data-route="alunos">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+      Alunos
+    </div>
+    <div class="nav-item" data-route="instrutores">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 100 16 8 8 0 000-16z"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg>
+      Instrutores
+    </div>
+    <div class="nav-item" data-route="usuarios">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/></svg>
+      Usuários
+    </div>
+    <div class="nav-item" data-route="turmas">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+      Turmas &amp; Horários
+    </div>
+    <div class="nav-item" data-route="financeiro">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+      Financeiro
+    </div>
+    <div class="nav-item" data-route="eventos">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Eventos
+    </div>
+    <div class="nav-item" data-route="presenca">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+      Presença
+    </div>
+    <div class="nav-item" data-route="relatorios">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10,9 9,9 8,9"/></svg>
+      Relatórios
+    </div>
+  </div>
+  <div class="sidebar-footer">v3.0.0 &copy; AMS System @ 2026</div>
+</nav>
+
+<!-- MAIN -->
+<div id="main">
+  <div id="header">
+    <div class="header-left">
+      <h2 id="header-title">DASHBOARD</h2>
+      <p id="header-sub">Visão geral do sistema</p>
+    </div>
+    <div class="header-right">
+      <select class="filial-select" id="filial-global">
+        <option value="all">Todas as Associações</option>
+      </select>
+      <span id="header-user" style="font-size:13px;color:var(--gray);font-weight:700;display:none;margin-right:10px"></span>
+      <button class="btn btn-secondary btn-sm" id="logout-btn" onclick="logout()" style="display:none">Sair</button>
+      <div class="alert-badge" onclick="navigate('financeiro');document.querySelector('.tab[data-tab=mensalidades]').click()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+        <span class="badge-count" id="alert-count">0</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="content">
+
+    <!-- DASHBOARD -->
+    <div class="section active" id="sec-dashboard">
+      <h1 class="page-title">DASHBOARD</h1>
+      <p class="page-sub">Visão consolidada de todas as associações</p>
+      <div class="cards-row cards-4" id="dash-kpis"></div>
+      <div class="cards-row cards-2">
+          <div class="card" style="border-top-color:var(--yellow)">
+          <div class="card-label">Alunos por Associação</div>
+          <div id="dash-chart-alunos" class="chart-bar-wrap" style="margin-top:12px"></div>
+        </div>
+          <div class="card" style="border-top-color:var(--green)">
+          <div class="card-label">Receita vs Despesa por Associação</div>
+          <div id="dash-chart-fin" class="chart-bar-wrap" style="margin-top:12px"></div>
+        </div>
+      </div>
+      <div id="dash-filiais-cards" class="cards-row cards-3"></div>
+    </div>
+
+    <!-- ASSOCIAÇÕES -->
+    <div class="section" id="sec-filiais">
+      <h1 class="page-title">ASSOCIAÇÕES</h1>
+      <p class="page-sub">Gerencie as associações da academia</p>
+      <div class="toolbar">
+        <input class="search-box" id="filiais-search" placeholder="Buscar associação..." oninput="renderFiliais()">
+          <div class="toolbar-right">
+          <button class="btn btn-primary" id="filial-add-btn" onclick="openModalFilial()">+ Nova Associação</button>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Nome</th><th>Cidade</th><th>Responsável</th><th>Modalidades</th><th>Status</th><th>Ações</th></tr></thead>
+          <tbody id="filiais-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ALUNOS -->
+    <div class="section" id="sec-alunos">
+      <h1 class="page-title">ALUNOS</h1>
+      <p class="page-sub">Controle de matrículas por associação</p>
+      <div id="aluno-profile" style="display:none"></div>
+      <div id="alunos-list">
+        <div class="toolbar">
+          <input class="search-box" id="alunos-search" placeholder="Buscar aluno..." oninput="renderAlunos()">
+          <select id="alunos-fil-filter" onchange="renderAlunos()" style="font-size:13px">
+            <option value="">Todas as Associações</option>
+          </select>
+          <select id="alunos-status-filter" onchange="renderAlunos()" style="font-size:13px">
+            <option value="">Todos os Status</option>
+            <option>Ativo</option><option>Inativo</option><option>Suspenso</option>
+          </select>
+          <select id="alunos-mod-filter" onchange="renderAlunos()" style="font-size:13px">
+            <option value="">Todas as Modalidades</option>
+            <option>Kung-Fu</option>
+            <option>Boxe Chines</option>
+            <option>Thai Chi</option> 
+          </select>
+          <div class="toolbar-right">
+            <button class="btn btn-primary" onclick="openModalAluno()">+ Novo Aluno</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Nome</th><th>Associação</th><th>Modalidade</th><th>Faixa</th><th>Status</th><th>Matrícula</th><th>Ações</th></tr></thead>
+            <tbody id="alunos-tbody"></tbody>
+          </table>
+        </div>
+        <div id="alunos-pagination" class="pagination-container"></div>
+      </div>
+    </div>
+
+    <!-- INSTRUTORES -->
+    <div class="section" id="sec-instrutores">
+      <h1 class="page-title">INSTRUTORES & PROFESSORES</h1>
+      <p class="page-sub">Equipe técnica das associações</p>
+      <div class="toolbar">
+        <input class="search-box" id="inst-search" placeholder="Buscar instrutor..." oninput="renderInstrutores()">
+        <select id="inst-fil-filter" onchange="renderInstrutores()" style="font-size:13px">
+          <option value="">Todas as Associações</option>
+        </select>
+        <select id="inst-tipo-filter" onchange="renderInstrutores()" style="font-size:13px">
+          <option value="">Todos os Tipos</option>
+          <option>Professor</option><option>Instrutor</option><option>Mestre</option><option>Sifu</option></select>
+        <div class="toolbar-right">
+          <button class="btn btn-primary" id="inst-add-btn" onclick="openModalInstrutor()">+ Novo Membro</button>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Nome</th><th>Tipo</th><th>Especialidade</th><th>Faixa</th><th>Associações</th><th>C.H.</th><th>Status</th><th>Ações</th></tr></thead>
+          <tbody id="inst-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- USUÁRIOS -->
+    <div class="section" id="sec-usuarios">
+      <h1 class="page-title">USUÁRIOS</h1>
+      <p class="page-sub">Gerencie contas de acesso e níveis hierárquicos</p>
+      <div class="toolbar">
+        <input class="search-box" id="usuarios-search" placeholder="Buscar usuário..." oninput="renderUsuarios()">
+        <select id="usuarios-role-filter" onchange="renderUsuarios()" style="font-size:13px">
+          <option value="">Todos os níveis</option>
+          <option>Administrador</option>
+          <option>Gestor</option>
+        </select>
+        <div class="toolbar-right">
+          <button class="btn btn-primary" id="usuarios-add-btn" onclick="openModalUsuario()">+ Novo Usuário</button>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Nome</th><th>E-mail</th><th>Nível</th><th>Associações</th><th>Ações</th></tr></thead>
+          <tbody id="usuarios-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- TURMAS -->
+    <div class="section" id="sec-turmas">
+      <h1 class="page-title">TURMAS &amp; HORÁRIOS</h1>
+      <p class="page-sub">Grade semanal de aulas por associação</p>
+      <div class="tabs">
+        <div class="tab active" data-tab="turmas-lista" onclick="switchTurmasTab(this)">Lista de Turmas</div>
+        <div class="tab" data-tab="turmas-grade" onclick="switchTurmasTab(this)">Grade Semanal</div>
+      </div>
+      <!-- LISTA -->
+      <div id="tab-turmas-lista">
+        <div class="toolbar">
+          <input class="search-box" id="turmas-search" placeholder="Buscar turma..." oninput="renderTurmas()">
+          <select id="turmas-fil-filter" onchange="renderTurmas()" style="font-size:13px">
+            <option value="">Todas as Associações</option>
+          </select>
+          <select id="turmas-mod-filter" onchange="renderTurmas()" style="font-size:13px">
+            <option value="">Todas as Modalidades</option>
+            <option>Kung-Fu</option>
+            <option>Boxe Chines</option>
+            <option>Thai Chi</option>
+          </select>
+          <div class="toolbar-right">
+            <button class="btn btn-primary" onclick="openModalTurma()">+ Nova Turma</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Nome</th><th>Associação</th><th>Modalidade</th><th>Instrutor</th><th>Dias</th><th>Horário</th><th>Vagas</th><th>Inscritos</th><th>Status</th><th>Ações</th></tr></thead>
+            <tbody id="turmas-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+      <!-- GRADE -->
+      <div id="tab-turmas-grade" style="display:none">
+        <div class="toolbar">
+          <select id="turmas-grade-filial" onchange="renderGradeSemanal()" style="font-size:13px">
+            <option value="">Todas as Associações</option>
+          </select>
+        </div>
+        <div style="overflow-x:auto">
+          <div id="grade-semanal-wrap"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FINANCEIRO -->
+    <div class="section" id="sec-financeiro">
+      <h1 class="page-title">FINANCEIRO</h1>
+      <p class="page-sub">Mensalidades, despesas e fluxo de caixa</p>
+      <div class="tabs">
+        <div class="tab active" data-tab="mensalidades" onclick="switchFinTab(this)">Mensalidades</div>
+        <div class="tab" data-tab="despesas" onclick="switchFinTab(this)">Despesas</div>
+        <div class="tab" data-tab="fluxo" onclick="switchFinTab(this)">Fluxo de Caixa</div>
+      </div>
+      <!-- MENSALIDADES -->
+      <div id="tab-mensalidades">
+        <div class="toolbar">
+          <input class="search-box" id="mens-search" placeholder="Buscar aluno..." oninput="renderMensalidades()">
+          <select id="mens-fil-filter" onchange="renderMensalidades()" style="font-size:13px">
+            <option value="">Todas as Associações</option>
+          </select>
+          <select id="mens-status-filter" onchange="renderMensalidades()" style="font-size:13px">
+            <option value="">Todos os Status</option>
+            <option>Pago</option>
+            <option>Pendente</option>
+            <option>Em Atraso</option>
+          </select>
+          <div class="toolbar-right">
+            <button class="btn btn-primary" onclick="openModalMensalidade()">+ Lançar</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Aluno</th><th>Associação</th><th>Ref.</th><th>Vencimento</th><th>Valor</th><th>Método</th><th>Status</th><th>Ações</th></tr></thead>
+            <tbody id="mens-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+      <!-- DESPESAS -->
+      <div id="tab-despesas" style="display:none">
+        <div class="toolbar">
+          <input class="search-box" id="desp-search" placeholder="Buscar despesa..." oninput="renderDespesas()">
+          <select id="desp-fil-filter" onchange="renderDespesas()" style="font-size:13px">
+            <option value="">Todas as Associações</option>
+          </select>
+          <div class="toolbar-right">
+            <button class="btn btn-primary" onclick="openModalDespesa()">+ Nova Despesa</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Descrição</th><th>Associação</th><th>Categoria</th><th>Data</th><th>Valor</th><th>Ações</th></tr></thead>
+            <tbody id="desp-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+      <!-- FLUXO DE CAIXA -->
+      <div id="tab-fluxo" style="display:none">
+        <div id="fluxo-content"></div>
+      </div>
+    </div>
+
+    <!-- EVENTOS -->
+    <div class="section" id="sec-eventos">
+      <h1 class="page-title">EVENTOS</h1>
+      <p class="page-sub">Campeonatos, seminários e graduações</p>
+      <div class="tabs">
+        <div class="tab active" data-tab="ev-lista" onclick="switchEvTab(this)">Lista</div>
+        <div class="tab" data-tab="ev-calendario" onclick="switchEvTab(this)">Calendário</div>
+      </div>
+      <div id="tab-ev-lista">
+        <div class="toolbar">
+          <input class="search-box" id="ev-search" placeholder="Buscar evento..." oninput="renderEventos()">
+          <select id="ev-fil-filter" onchange="renderEventos()" style="font-size:13px">
+            <option value="">Todas as Associações</option>
+          </select>
+          <div class="toolbar-right">
+            <button class="btn btn-primary" onclick="openModalEvento()">+ Novo Evento</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Nome</th><th>Tipo</th><th>Associação</th><th>Data</th><th>Participantes</th><th>Ações</th></tr></thead>
+            <tbody id="ev-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+      <div id="tab-ev-calendario" style="display:none">
+        <div style="display:flex;align-items:center;gap:16px;margin-bottom:12px">
+          <button class="btn btn-secondary btn-sm" onclick="changeCalMonth(-1)">&#8592;</button>
+          <strong id="cal-month-label" style="font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:1px"></strong>
+          <button class="btn btn-secondary btn-sm" onclick="changeCalMonth(1)">&#8594;</button>
+        </div>
+        <div id="calendario-wrap"></div>
+      </div>
+    </div>
+
+    <!-- PRESENÇA -->
+    <div class="section" id="sec-presenca">
+      <h1 class="page-title">PRESENÇA &amp; FREQUÊNCIA</h1>
+      <p class="page-sub">Registro de chamada e análise de frequência por aluno</p>
+      <div class="tabs">
+        <div class="tab active" data-tab="pres-chamada" onclick="switchPresTab(this)">Registrar Chamada</div>
+        <div class="tab" data-tab="pres-historico" onclick="switchPresTab(this)">Histórico</div>
+        <div class="tab" data-tab="pres-freq" onclick="switchPresTab(this)">Frequência por Aluno</div>
+      </div>
+
+      <!-- CHAMADA -->
+      <div id="tab-pres-chamada">
+        <div class="toolbar">
+          <select id="pres-turma-sel" onchange="loadChamada()" style="font-size:13px;min-width:220px">
+            <option value="">— Selecionar Turma —</option>
+          </select>
+          <input type="date" id="pres-data-sel" onchange="loadChamada()" style="font-size:13px">
+          <select id="pres-fil-chamada" onchange="populateTurmaSelect()" style="font-size:13px">
+            <option value="">Todas as Associações</option>
+          </select>
+          <div class="toolbar-right">
+            <button class="btn btn-primary" onclick="salvarChamada()">&#10003; Salvar Chamada</button>
+          </div>
+        </div>
+        <div id="chamada-wrap">
+          <div class="empty-state">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+            <p>Selecione uma turma e a data para registrar a chamada</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- HISTÓRICO -->
+      <div id="tab-pres-historico" style="display:none">
+        <div class="toolbar">
+          <input class="search-box" id="pres-hist-search" placeholder="Buscar aluno..." oninput="renderHistorico()">
+          <select id="pres-hist-turma" onchange="renderHistorico()" style="font-size:13px;min-width:200px">
+            <option value="">Todas as Turmas</option>
+          </select>
+          <select id="pres-hist-status" onchange="renderHistorico()" style="font-size:13px">
+            <option value="">Todos</option>
+            <option>Presente</option>
+            <option>Ausente</option>
+            <option>Justificado</option>
+          </select>
+          <input type="date" id="pres-hist-data" onchange="renderHistorico()" style="font-size:13px">
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Aluno</th><th>Turma</th><th>Associação</th><th>Data</th><th>Status</th><th>Obs.</th><th>Ações</th></tr></thead>
+            <tbody id="pres-hist-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- FREQUÊNCIA POR ALUNO -->
+      <div id="tab-pres-freq" style="display:none">
+        <div class="toolbar">
+          <select id="pres-freq-fil" onchange="renderFrequencia()" style="font-size:13px">
+            <option value="">Todas as Associações</option>
+          </select>
+          <select id="pres-freq-turma" onchange="renderFrequencia()" style="font-size:13px;min-width:200px">
+            <option value="">Todas as Turmas</option>
+          </select>
+          <select id="pres-freq-period" onchange="renderFrequencia()" style="font-size:13px">
+            <option value="30">Últimos 30 dias</option>
+            <option value="60">Últimos 60 dias</option>
+            <option value="90">Últimos 90 dias</option>
+          </select>
+        </div>
+        <div id="freq-alunos-wrap"></div>
+      </div>
+    </div>
+
+    <!-- RELATÓRIOS -->
+    <div class="section" id="sec-relatorios">
+      <h1 class="page-title">RELATÓRIOS</h1>
+      <p class="page-sub">Análises detalhadas por associação</p>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap">
+        <div class="tabs" style="margin-bottom:0">
+          <div class="tab active" data-tab="rel-filial" onclick="switchRelTab(this)">Por Associação</div>
+          <div class="tab" data-tab="rel-consolid" onclick="switchRelTab(this)">Consolidado</div>
+          <div class="tab" data-tab="rel-financeiro" onclick="switchRelTab(this)">Financeiro</div>
+          <div class="tab" data-tab="rel-instrutores" onclick="switchRelTab(this)">Instrutores</div>
+        </div>
+        <button class="btn btn-print" onclick="window.print()">&#128438; Imprimir</button>
+      </div>
+      <div id="tab-rel-filial"><div id="rel-filial-content"></div></div>
+      <div id="tab-rel-consolid" style="display:none"><div id="rel-consolid-content"></div></div>
+      <div id="tab-rel-financeiro" style="display:none"><div id="rel-fin-content"></div></div>
+      <div id="tab-rel-instrutores" style="display:none"><div id="rel-inst-content"></div></div>
+    </div>
+
+  </div><!-- /content -->
+</div><!-- /main -->
+
+<!-- MODAL -->
+<div id="modal-overlay" onclick="if(event.target===this) closeModal()">
+  <div id="modal-box">
+    <div class="modal-header">
+      <h2 id="modal-title"></h2>
+      <button type="button" class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+
+<script src="script.js?v=1.2"></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+{
+  "name": "academia-pro-plus",
+  "version": "2.0.0",
+  "description": "Sistema de Gestão para Liga Garra de Aguia",
+  "main": "electron-main.js",
+  "author": "Academia Pro+",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test tests/multi-association.test.js tests/installer-config.test.js",
+    "dist": "node build-installers.js",
+    "dist:x64": "node build-installers.js x64",
+    "dist:windows7-x86": "node build-windows7-x86.js"
+  },
+  "devDependencies": {
+    "electron": "^41.2.1",
+    "electron-builder": "^26.15.3"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.2",
+    "sql.js": "^1.8.0"
+  },
+  "build": {
+    "appId": "br.com.academiaproplus.app",
+    "productName": "AcademiaPro+",
+    "directories": {
+      "output": "release/installers"
+    },
+    "files": [
+      "electron-main.js",
+      "server.js",
+      "index.html",
+      "script.js",
+      "style.css",
+      "Imagens/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ],
+    "extraMetadata": {
+      "main": "electron-main.js"
+    },
+    "win": {
+      "icon": "Imagens/icone.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "AcademiaPro+-Setup-${version}-${arch}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  }
+}
